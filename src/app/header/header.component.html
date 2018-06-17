@@ -1,0 +1,20 @@
+<mat-toolbar color="accent">
+  <a class="display-4 white" routerLink="/home" routerLinkActive="true">ReadSmart</a>
+  <span class="spacer"></span>
+
+  <div class="mr-3">
+    <button mat-raised-button class="white" color="primary" [matMenuTriggerFor]="library">Your Library</button>
+    <mat-menu #library="matMenu">
+      <button mat-menu-item routerLink="/book-list" routerLinkActive="true">Your books</button>
+      <button mat-menu-item>Add a book</button>
+    </mat-menu>
+  </div>
+
+  <div class="mr-3">
+    <button mat-raised-button class="white" color="primary" [matMenuTriggerFor]="profile">Profile</button>
+    <mat-menu #profile="matMenu">
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+  </div>
+
+</mat-toolbar>

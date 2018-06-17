@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav" style="background:rgba(0,0,0,.5);">
+  <div class="container">
+    <a class="navbar-brand" style="font-size:2em;color:#ffffff;" href="">ReadSmart</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link header-item" routerLink="/login" routerLinkActive="true" style="font-size:1em;">Sign In</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link header-item" routerLink="/create-user" routerLinkActive="true" style="font-size:1em;">Sign Up</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav><mat-progress-spinner *ngIf="!formData"></mat-progress-spinner>
+
+<div *ngIf="formData">
+  <div class="container" style="margin-top:15%; margin-bottom: 15%;">
+    <div class="row align-items-center justify-content-center">
+      <div class="card">
+        <!--<img class="card-img-top" src="">-->
+        <div class="card-body">
+          <div class="alert alert-danger" *ngIf="missingField">One or more fields are missing!</div>
+          <h4 class="card-title">Login:</h4>
+          <hr />
+          <form [formGroup]="formData">
+            <div class="row"><label class="col-form-label">Email:</label>
+              <input class="form-control" formControlName="email" required></div>
+
+            <div class="row"><label class="col-form-label">Password</label>
+              <input type="password" class="form-control" formControlName="password" required></div>
+            <div class="row" style="margin-top: 5%"><button mat-raised-button class="form-control" color="accent" (click)="login(formData.value)">Log in</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer-component></app-footer-component>

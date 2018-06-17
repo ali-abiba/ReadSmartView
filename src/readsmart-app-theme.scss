@@ -1,0 +1,12 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$readsmart-app-primary: mat-palette($mat-gray);
+$readsmart-app-accent:  mat-palette($mat-orange);
+
+$readsmart-app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$readsmart-app-theme: mat-light-theme($readsmart-app-primary, $readsmart-app-accent, $readsmart-app-warn);
+
+@include angular-material-theme($readsmart-app-theme);
