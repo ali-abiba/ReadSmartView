@@ -12,6 +12,7 @@ import {MatTableDataSource} from "@angular/material";
     books: Array<BookData>;
     displayedColumns = ['title', 'author', 'genres'];
     dataSource = new MatTableDataSource<BookData>(null);
+
     constructor(private bookService: BookService) {
     }
 
