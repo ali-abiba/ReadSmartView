@@ -3,18 +3,23 @@ import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/com
 import {Observable} from "rxjs/Observable";
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor{
+export class AuthInterceptor implements HttpInterceptor {
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
-    const token = localStorage.getItem('token');
+  intercept(req: HttpRequest<any>,
+            next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if(token) {
-      const clone = req.clone({
-        headers: req.headers.set('authorization', 'bearer ' + token)
+    const idToken = localStorage.getItem("token");
+    if(req.url === 'https://openlibrary.org/api/books') return next.handle(req);
+
+    if (idToken) {
+      const cloned = req.clone({
+        headers: req.headers.set("Authorization",
+          "Bearer " + idToken)
       });
 
-      return next.handle(clone);
-    }else{
+      return next.handle(cloned);
+    }
+    else {
       return next.handle(req);
     }
   }

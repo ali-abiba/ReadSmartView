@@ -1,27 +1,13 @@
+<app-header-component></app-header-component>
 <mat-spinner *ngIf="!books"></mat-spinner>
 <div *ngIf="books">
-  <div class="table-container mat-elevation-z8">
-    <div class="table-header">
-      <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-      </mat-form-field>
-    </div>
-    <mat-table #table [dataSource]="dataSource">
-      <ng-container matColumnDef="title">
-        <mat-header-cell *matHeaderCellDef>Title</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.title }}</mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="author">
-        <mat-header-cell *matHeaderCellDef>Author</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.author }}</mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="genres">
-        <mat-header-cell *matHeaderCellDef>Genres</mat-header-cell>
-        <mat-cell *matCellDef="let element">{{ element.genreList }}</mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  </div>
+  <mat-grid-list cols="3" rowHeight="1:2">
+    <mat-grid-tile *ngFor="let book of books">
+      <mat-card>
+        <mat-card-title>{{book.title}}</mat-card-title>
+        <img mat-card-image *ngIf="book.cover" src="{{book.cover}}" alt="Cover for {{book.title}}">
+        <mat-card-content><h3>{{book.authors}}</h3></mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

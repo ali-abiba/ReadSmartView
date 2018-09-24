@@ -7,5 +7,11 @@ export class UsersService {
   constructor(private http: HttpClient) {
   }
 
+  /**
+   * GETs user by email
+   */
+  public getUserByEmail(email: string) {
+    const url = environment.apiUri + '/users/getUserByEmail';
 
+  }
 }

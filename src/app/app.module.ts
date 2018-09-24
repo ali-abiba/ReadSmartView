@@ -1,17 +1,17 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
 
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {BookListComponent} from "./books/book.list.component";
 import {BookService} from "./books/book.service";
 import {
   MatButtonModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule,
   MatTableModule,
-  MatSnackBarModule, MatMenuModule, MatToolbarModule
+  MatSnackBarModule, MatMenuModule, MatToolbarModule, MatSelectModule, MatGridListModule, MatCardModule
 } from "@angular/material";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {UserLoginComponent} from "./auth/auth.login.component";
 import {AuthService} from "./auth/auth.service";
 import {RouterModule, Routes} from "@angular/router";
@@ -24,26 +24,41 @@ import {UsersService} from "./users/users.service";
 import {LandingComponent} from "./landing/landing.component";
 import {HomeComponent} from "./home/home.component";
 import {BookAddComponent} from "./books/book.add.component";
+import {AuthInterceptor} from "./auth/auth.interceptor";
+import {LibraryService} from "./library/library.service";
+import {GenreService} from "./genres/genre.service";
+import {LibraryListComponent} from "./library/library.list.component";
 
 const appRoutes: Routes = [
-  {path:'home', component: HomeComponent, canActivate: [AuthGuardService]},
-  {path:'book-list', component: BookListComponent, canActivate: [AuthGuardService]},
-  {path:'create-user', component: UsersNewUserComponent},
-  {path:'login', component:UserLoginComponent},
-  {path:'landing', component:LandingComponent},
-  {path: '', redirectTo: '/landing', pathMatch:'full'}
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuardService]},
+  {path: 'book-list', component: BookListComponent, canActivate: [AuthGuardService]},
+  {path: 'user-library', component: LibraryListComponent, canActivate: [AuthGuardService]},
+  {path: 'add-book', component: BookAddComponent, canActivate: [AuthGuardService]},
+  {path: 'create-user', component: UsersNewUserComponent},
+  {path: 'login', component: UserLoginComponent},
+  {path: 'landing', component: LandingComponent},
+  {path: '', redirectTo: '/landing', pathMatch: 'full'}
 ]
 
 @NgModule({
   declarations: [
-    AppComponent, BookListComponent, BookAddComponent, UserLoginComponent, LandingComponent, HeaderComponent, FooterComponent, UsersNewUserComponent, HomeComponent
+    AppComponent, BookListComponent, BookAddComponent, UserLoginComponent, LandingComponent, HeaderComponent, FooterComponent,
+    UsersNewUserComponent, HomeComponent, LibraryListComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
     BrowserModule, MatProgressSpinnerModule, HttpClientModule, MatFormFieldModule, MatTableModule,
-    MatInputModule, ReactiveFormsModule, FormsModule, MatButtonModule, MatSnackBarModule, BrowserAnimationsModule, MatMenuModule, MatToolbarModule
+    MatInputModule, ReactiveFormsModule, FormsModule, MatButtonModule, MatSnackBarModule, BrowserAnimationsModule, MatMenuModule, MatToolbarModule, MatSelectModule,
+    MatGridListModule, MatCardModule
   ],
-  providers: [BookService, AuthService, AuthGuardService, FormBuilder, UsersService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    BookService, AuthService, AuthGuardService, FormBuilder, UsersService, AuthInterceptor, LibraryService, GenreService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
