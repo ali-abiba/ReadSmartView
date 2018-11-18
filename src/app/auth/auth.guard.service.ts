@@ -13,13 +13,17 @@ export class AuthGuardService implements CanActivate {
   }
 
   checkLogin(url: string): boolean{
-    if(this.authService.isLoggedIn()) return true;
-
-    if(this.authService.getExpiration().isAfter(moment().format())) return false;
+    if(this.authService.isLoggedIn()){
+      if(!this.authService.getExpiration().isAfter(moment().format())){
+        console.log('expired token');
+        return false;
+      }
+      return true;
+    }
 
     this.authService.redirectUrl = url;
 
-    this.router.navigate(['/login']);
+    this.router.navigate(['login']);
     return false;
   }
 }

@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {FormControl, FormGroup} from "@angular/forms";
-import {UsersService} from "./users.service";
-import {AuthService} from "../auth/auth.service";
+import {UsersService} from "./../users.service";
+import {AuthService} from "../../auth/auth.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material";
 

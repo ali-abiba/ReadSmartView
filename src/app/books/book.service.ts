@@ -24,7 +24,7 @@ export class BookService {
    * @param isbn
    * @return {Observable<Object>}
    */
-  public getBookByIsbn(isbn){
+  public searchBookByIsbn(isbn){
     const url = 'https://openlibrary.org/api/books';
     let params = new HttpParams();
     params = params.append('bibkeys', 'ISBN:'+isbn);
@@ -39,9 +39,21 @@ export class BookService {
    * @param title the title of book
    * @return {Observable<Object>}
    */
-  public getBookByTitle(title) {
+  public getBookByTitle(title:string) {
     const url = environment.apiUri + '/books/getBookByTitle';
     let params = new HttpParams().set('title', title);
+
+    return this.http.get(url, {params: params});
+  }
+
+  /**
+   * GETs a book by its isbn
+   * @param isbn the isbn of the book
+   * @return {Observable<Object>}
+   */
+  public getBookByIsbn(isbn:string) {
+    const url = environment.apiUri + '/books/getBookByIsbn';
+    let params = new HttpParams().set('isbn', isbn);
 
     return this.http.get(url, {params: params});
   }
