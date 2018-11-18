@@ -1,0 +1,15 @@
+<app-header-component></app-header-component>
+
+<mat-progress-spinner *ngIf="!book"></mat-progress-spinner>
+
+<div *ngIf="book">
+  <img src="{{book.cover}}" class="book-info-img">
+
+  <mat-divider></mat-divider>
+
+  <h3>{{book.authors}}</h3>
+
+  <div class="row" *ngIf="book.genreList && book.genreList.length > 0">
+    <h4 *ngFor="let genre of book.genreList">{{genre}}</h4>
+  </div>
+</div>

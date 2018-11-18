@@ -48,14 +48,15 @@ export class AuthService {
       .do(res => this.setSession(res))
   }
 
-  setSession(authResult){
-    const expires = moment().add(authResult.expiresIn, 'second');
+  setSession(result){
+    const expires = moment().add(result.expiresIn, 'second');
 
-    localStorage.setItem('token', authResult.token);
-    console.log(authResult);
+    localStorage.setItem('userId', result.user);
+    localStorage.setItem('token', result.token);
     localStorage.setItem('expires', JSON.stringify(expires.valueOf()));
   }
   logout() {
+    localStorage.removeItem('userId');
     localStorage.removeItem('token');
     localStorage.removeItem('expires');
   }
@@ -72,6 +73,7 @@ export class AuthService {
   getExpiration(){
     const expiration = localStorage.getItem('expires');
     const expiresAt = JSON.parse(expiration);
+
     return moment(expiresAt);
   }
 }

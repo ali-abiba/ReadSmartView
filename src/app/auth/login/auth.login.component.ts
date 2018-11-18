@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "./auth.service";
+import {AuthService} from "./../auth.service";
 import {Router} from "@angular/router";
 import {MatSnackBar} from "@angular/material";
 
@@ -44,11 +44,16 @@ export class UserLoginComponent implements OnInit{
         error => {
           console.error(error);
           this.errorMessage = error.error;
-          this.errorTitle = error.status
-
-          this.snackBar.open(this.errorMessage, this.errorTitle, {
-            duration: 5000,
-          });
+          this.errorTitle = error.status;
+          if(error) {
+            this.snackBar.open(this.errorMessage, this.errorTitle, {
+              duration: 5000
+            });
+          }else {
+            this.snackBar.open('Looks like the server is down, try again later.', 'Oops', {
+              duration: 5000
+            })
+          }
         })
     } else {
       this.missingField = true;

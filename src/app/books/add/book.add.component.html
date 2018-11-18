@@ -1,0 +1,61 @@
+<app-header-component></app-header-component>
+<div class="m-3">
+  <div class="mx-auto">
+    <h2 class="mat-display-2">Add a book to your library:</h2>
+
+    <button mat-raised-button class="mb-2a" color="accent" data-toggle="modal" data-target="#isbnModal">Have an ISBN?
+    </button>
+
+    <div class="row">
+      <div class="col-5 ml-2">
+        <form>
+          <mat-form-field class="full-width">
+            <input class="full-width" matInput [(ngModel)]="book.title" value="{{book.title}}" placeholder="Title"
+                   name="title">
+          </mat-form-field>
+          <mat-select class="full-width" placeholder="Genres" [(ngModel)]="book.genreList" name="genres" multiple>
+            <mat-option *ngFor="let genre of genres" [value]="genre">{{genre.genre}}</mat-option>
+          </mat-select>
+          <mat-form-field class="full-width">
+            <input matInput [(ngModel)]="book.authors" value="{{book.authors}}"
+                   placeholder="Author(s)"
+                   name="authors">
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <input matInput [(ngModel)]="book.isbn" value="{{book.isbn}}" placeholder="ISBN" name="isbn">
+          </mat-form-field>
+          <div class="row">
+            <button mat-raised-button color="accent" (click)="saveBook()">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-6">
+        <img *ngIf="book.cover" src="{{book.cover}}" class=" rounded img-fluid"
+             alt="The cover for {{book.title}}">
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="isbnModal" tabindex="-1" role="dialog" aria-labelledby="isbnModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="isbnModalLabel">Enter the ISBN</h5>
+          <small class="mt-2">Provided by <a href="http://openlibrary.com">OpenLibrary</a></small>
+          <button type="button" class="close" data-dismiss="modal" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label for="isbn">ISBN:</label>
+          <input type="text" class="form-control" id="isbn" #isbn>
+        </div>
+        <div class="modal-footer">
+          <button mat-raised-button color="accent" (click)="searchForIsbn(isbn.value)" data-dismiss="modal">Submit
+          </button>
+          <button mat-raised-button color="primary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -6,7 +6,7 @@
     <button mat-raised-button class="white" color="primary" [matMenuTriggerFor]="library">Your Library</button>
     <mat-menu #library="matMenu">
       <button mat-menu-item routerLink="/book-list" routerLinkActive="true">Your books</button>
-      <button mat-menu-item>Add a book</button>
+      <button mat-menu-item routerLink="/add-book" routerLinkActive="true">Add a book</button>
     </mat-menu>
   </div>
 

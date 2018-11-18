@@ -1,8 +1,10 @@
+import {GenreData} from "../genres/genre.data";
+
 export class BookData {
   id: number;
   title: string;
-  author: string;
-  genreList: string;
+  authors: string;
+  genreList: Array<GenreData>;
   isbn: string;
-  price: number;
+  cover: string;
 }
