@@ -28,25 +28,25 @@ import {BookAddComponent} from "./books/add/book.add.component";
 import {AuthInterceptor} from "./auth/auth.interceptor";
 import {LibraryService} from "./library/library.service";
 import {GenreService} from "./genres/genre.service";
-import {LibraryListComponent} from "./library/list/library.list.component";
 import {BookInfoComponent} from './books/info/book.info.component';
+import {BookReadComponent} from "./books/reading/book.read.component";
 
 const appRoutes: Routes = [
   {path: 'landing', component: LandingComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuardService]},
   {path: 'login', component: UserLoginComponent},
   {path: 'create-user', component: UsersNewUserComponent},
-  {path: 'user-library', component: LibraryListComponent, canActivate: [AuthGuardService]},
   {path: 'add-book', component: BookAddComponent, canActivate: [AuthGuardService]},
   {path: 'book-list', component: BookListComponent, canActivate: [AuthGuardService]},
   {path: 'book-info/:isbn', component: BookInfoComponent, canActivate: [AuthGuardService]},
+  {path: 'read/:isbn', component: BookReadComponent, canActivate: [AuthGuardService]},
   {path: '', redirectTo: '/landing', pathMatch: 'full'}
 ]
 
 @NgModule({
   declarations: [
     AppComponent, BookListComponent, BookAddComponent, UserLoginComponent, LandingComponent, HeaderComponent, FooterComponent,
-    UsersNewUserComponent, HomeComponent, LibraryListComponent, BookInfoComponent
+    UsersNewUserComponent, HomeComponent, BookInfoComponent, BookReadComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
