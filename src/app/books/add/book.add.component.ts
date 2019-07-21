@@ -36,14 +36,15 @@ export class BookAddComponent implements OnInit {
     isbn = isbn.replace('-', '');
     this.bookService.searchBookByIsbn(isbn).subscribe(response => {
       let data = response['ISBN:' + isbn];
+      console.log(data);
       if (data) {
         this.book.title = data.title;
         this.book.isbn = isbn;
         this.book.cover = data.cover.large;
 
-        this.book.authors = '';
+        this.book.author = '';
         data.authors.forEach(author => {
-          this.book.authors += author.name + ' ';
+          this.book.author += author.name + ' ';
         });
       } else {
         this.snackBar.open('Can\'t find a book with that ISBN');

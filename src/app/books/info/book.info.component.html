@@ -3,13 +3,10 @@
 <mat-progress-spinner *ngIf="!book"></mat-progress-spinner>
 
 <div *ngIf="book">
-  <img src="{{book.cover}}" class="book-info-img">
+  <div class="head" [style.background-image]="'url('+book.cover+')'">
+  </div>
 
-  <mat-divider></mat-divider>
-
-  <h3>{{book.authors}}</h3>
-
-  <div class="row" *ngIf="book.genreList && book.genreList.length > 0">
-    <h4 *ngFor="let genre of book.genreList">{{genre}}</h4>
+  <div class="mx-auto start-read">
+    <button mat-raised-button class="start-btn" routerLinkActive="true" routerLink="/read/{{book.isbn}}" color="accent">Start reading {{book.title}}</button>
   </div>
 </div>

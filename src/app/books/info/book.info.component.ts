@@ -5,7 +5,8 @@ import {BookData} from "./../book.data";
 
 @Component({
   selector: 'app-book-info-component',
-  templateUrl: './book.info.component.html'
+  templateUrl: './book.info.component.html',
+  styleUrls: ['./book.info.component.css']
 })
 export class BookInfoComponent implements OnInit{
   isbn: string;
@@ -18,7 +19,7 @@ export class BookInfoComponent implements OnInit{
 
     this.bookService.getBookByIsbn(this.isbn).subscribe(response => {
         this.book = <BookData>response;
-        console.log(this.book);
+        console.log(response);
     });
   }
 }
