@@ -1,9 +1,7 @@
-import {Injectable} from "@angular/core";
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {enterView} from "@angular/core/src/render3/instructions";
-import {environment} from "../../environments/environment";
-import 'rxjs/add/operator/map'
-import {BookData} from "../books/book.data";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {BookData} from '../books/book.data';
 
 @Injectable()
 export class LibraryService {
@@ -18,7 +16,7 @@ export class LibraryService {
 
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json'
+        'Content-Type': 'application/json'
       })
     };
 

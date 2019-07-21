@@ -1,4 +1,4 @@
-import {GenreData} from "../genres/genre.data";
+import {GenreData} from '../genres/genre.data';
 
 export class BookData {
   id: number;

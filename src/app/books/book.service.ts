@@ -1,19 +1,17 @@
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {environment} from "../../environments/environment";
-import {Injectable} from "@angular/core";
-import {BookData} from "./book.data";
-import {catchError, map} from "rxjs/operators";
-import {Observable} from "rxjs/Observable";
-
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {Injectable} from '@angular/core';
+import {BookData} from './book.data';
+import {Observable} from 'rxjs/internal/Observable';
 @Injectable()
 export class BookService {
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient) {
   }
 
   /**
    * Method to retrieve all books
    **/
-  public getBooks(){
+  public getBooks() {
     const url = environment.apiUri + '/books/getBooks';
 
     return this.http.get(url);
@@ -24,10 +22,10 @@ export class BookService {
    * @param isbn
    * @return {Observable<Object>}
    */
-  public searchBookByIsbn(isbn){
+  public searchBookByIsbn(isbn):Observable<any> {
     const url = 'https://openlibrary.org/api/books';
     let params = new HttpParams();
-    params = params.append('bibkeys', 'ISBN:'+isbn);
+    params = params.append('bibkeys', 'ISBN:' + isbn);
     params = params.append('format', 'json');
     params = params.append('jscmd', 'data');
 
@@ -39,7 +37,7 @@ export class BookService {
    * @param title the title of book
    * @return {Observable<Object>}
    */
-  public getBookByTitle(title:string) {
+  public getBookByTitle(title: string): Observable<any> {
     const url = environment.apiUri + '/books/getBookByTitle';
     let params = new HttpParams().set('title', title);
 
@@ -51,7 +49,7 @@ export class BookService {
    * @param isbn the isbn of the book
    * @return {Observable<Object>}
    */
-  public getBookByIsbn(isbn:string) {
+  public getBookByIsbn(isbn: string) {
     const url = environment.apiUri + '/books/getBookByIsbn';
     let params = new HttpParams().set('isbn', isbn);
 
@@ -63,11 +61,11 @@ export class BookService {
    * @param book the book data
    * @return {Observable<Object>}
    */
-  public addBook(bookData: BookData) {
+  public addBook(bookData: BookData): Observable<any> {
     const addBookUrl = environment.apiUri + '/books/addBook';
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json'
+        'Content-Type': 'application/json'
       })
     };
 

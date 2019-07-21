@@ -1,20 +1,21 @@
-import {CanActivate, Router} from "@angular/router";
-import {Injectable, state} from "@angular/core";
-import {AuthService} from "./auth.service";
-import * as moment from "moment";
+import {CanActivate, Router} from '@angular/router';
+import {Injectable} from '@angular/core';
+import {AuthService} from './auth.service';
+import * as moment from 'moment';
+
 @Injectable()
 export class AuthGuardService implements CanActivate {
-  constructor(private authService: AuthService, private router: Router){
+  constructor(private authService: AuthService, private router: Router) {
   }
 
-  canActivate(){
-    let url = this.router.url
+  canActivate() {
+    const url = this.router.url;
     return this.checkLogin(url);
   }
 
-  checkLogin(url: string): boolean{
-    if(this.authService.isLoggedIn()){
-      if(!this.authService.getExpiration().isAfter(moment().format())){
+  checkLogin(url: string): boolean {
+    if (this.authService.isLoggedIn()) {
+      if (!this.authService.getExpiration().isAfter(moment().format())) {
         console.log('expired token');
         return false;
       }

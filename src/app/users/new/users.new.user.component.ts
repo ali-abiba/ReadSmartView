@@ -1,9 +1,9 @@
-import {Component} from "@angular/core";
-import {FormControl, FormGroup} from "@angular/forms";
-import {UsersService} from "./../users.service";
-import {AuthService} from "../../auth/auth.service";
-import {Router} from "@angular/router";
-import {MatSnackBar} from "@angular/material";
+import {Component} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
+import {UsersService} from './../users.service';
+import {AuthService} from '../../auth/auth.service';
+import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-user-new-user',
@@ -22,18 +22,18 @@ export class UsersNewUserComponent {
     passwordConfirm: new FormControl()
   });
 
-  constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar){
+  constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) {
   }
 
-  createUser(userInfo){
+  createUser(userInfo) {
     const val = this.formData.value;
 
-    if(val.email && val.password && val.passwordConfirm) {
+    if (val.email && val.password && val.passwordConfirm) {
       this.missingField === false;
-      if(val.password === val.passwordConfirm) {
+      if (val.password === val.passwordConfirm) {
         this.authService.addUser(userInfo).subscribe(response => {
-          this.router.navigate(['/home']);
-        },
+            this.router.navigate(['/home']);
+          },
           error => {
             this.snackBar.open(error.error, error.status, {
               duration: 5000
