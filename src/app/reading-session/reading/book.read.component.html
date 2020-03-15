@@ -1,0 +1,12 @@
+<app-header-component></app-header-component>
+
+<div class="timer">
+  <mat-progress-spinner *ngIf="!book"></mat-progress-spinner>
+
+  <div *ngIf="book">
+    <div class="mx-auto start-read">
+      <button mat-raised-button class="start-btn" *ngIf="(!isReading)" (click)="startReading()" color="accent">Start</button>
+      <button mat-raised-button class="start-btn" *ngIf="(isReading)" (click)="stopReading()" color="warn">Stop</button>
+    </div>
+</div>
+</div>

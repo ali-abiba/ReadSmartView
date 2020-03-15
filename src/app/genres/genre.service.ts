@@ -10,7 +10,7 @@ export class GenreService {
   /**
    * GETs all genres
    */
-  getGenres(){
+  getGenres() {
     const url = environment.apiUri + '/genres/getGenres';
     return this.http.get(url);
   }

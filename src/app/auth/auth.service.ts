@@ -8,7 +8,7 @@ import {tap} from 'rxjs/operators';
 @Injectable()
 export class AuthService {
   redirectUrl: string;
-
+  currentUser: number;
   constructor(private http: HttpClient) {
   }
 
@@ -51,16 +51,16 @@ export class AuthService {
 
   setSession(result) {
     const expires = moment().add(result.expiresIn, 'second');
-
+    console.log(result);
     localStorage.setItem('userId', result.user);
     localStorage.setItem('token', result.token);
-    localStorage.setItem('expires', JSON.stringify(expires.valueOf()));
+    // localStorage.setItem('expires', JSON.stringify(expires.valueOf()));
   }
 
   logout() {
     localStorage.removeItem('userId');
     localStorage.removeItem('token');
-    localStorage.removeItem('expires');
+    // localStorage.removeItem('expires');
   }
 
   public isLoggedIn() {
@@ -80,5 +80,9 @@ export class AuthService {
     const expiresAt = JSON.parse(expiration);
 
     return moment(expiresAt);
+  }
+
+  getUserId(): string {
+    return localStorage.getItem('userId');
   }
 }

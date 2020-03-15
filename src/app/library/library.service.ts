@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {BookData} from '../books/book.data';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class LibraryService {
@@ -26,12 +27,19 @@ export class LibraryService {
     }, httpOptions);
   }
 
+  getLibraryEntry(userId: string, bookId: string): Observable<any> {
+    const url = environment.apiUri + '/library/get-library-entry';
+    const params = new HttpParams().set('userId', userId).set('bookId', bookId);
+
+    return this.http.get(url, {params: params});
+  }
+
   /**
    * GETs books in library
    * @param id the user ID
    */
   public getLibrary(userId) {
-    const url = environment.apiUri + '/library/getLibrary?userId=' + userId;
+    const url = environment.apiUri + '/library/get-library?userId=' + userId;
 
     return this.http.get(url);
   }

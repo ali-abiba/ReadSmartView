@@ -50,7 +50,7 @@ export class BookService {
    * @return {Observable<Object>}
    */
   public getBookByIsbn(isbn: string) {
-    const url = environment.apiUri + '/books/getBookByIsbn';
+    const url = environment.apiUri + '/books/get-book-by-isbn';
     let params = new HttpParams().set('isbn', isbn);
 
     return this.http.get(url, {params: params});
@@ -62,13 +62,24 @@ export class BookService {
    * @return {Observable<Object>}
    */
   public addBook(bookData: BookData): Observable<any> {
-    const addBookUrl = environment.apiUri + '/books/addBook';
+    const url = environment.apiUri + '/books/add-book';
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
+    return this.http.post(url, {bookData}, httpOptions);
+  }
 
-    return this.http.post(addBookUrl, {bookData}, httpOptions);
+  /**
+   * GETs book by the bookId
+   * @param bookId the ID of the book
+   * @return {Observable<Object>}
+   */
+  public getBookById(bookId: string): Observable<any> {
+    const url = environment.apiUri + '/books/get-book-by-id';
+    let params = new HttpParams().set('bookId', bookId);
+
+    return this.http.get(url, {params: params});
   }
 }
