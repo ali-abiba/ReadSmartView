@@ -6,5 +6,5 @@
 export const environment = {
   production: false,
   apiUri: 'http://localhost:8081',
-  mailHandleUrl: 'https://mail-handle.herokuapp.com'
+  mailHandleUrl: 'http://localhost:3000'
 };
