@@ -14,4 +14,19 @@ export class UsersService {
     const url = environment.apiUri + '/users/getUserByEmail';
 
   }
+
+  /**
+   * Saves email for email updates
+   */
+  public addEmail(email: string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    this.http.post(`${environment.mailHandleUrl}/mail/add-email`,{email: this.email}, httpOptions).subscribe(res => {
+      console.log(res);
+    });
+  }
 }

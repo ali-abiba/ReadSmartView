@@ -17,7 +17,7 @@
             <mat-option *ngFor="let genre of genres" [value]="genre">{{genre.genre}}</mat-option>
           </mat-select>
           <mat-form-field class="full-width">
-            <input matInput [(ngModel)]="book.authors" value="{{book.authors}}"
+            <input matInput [(ngModel)]="book.author" value="{{book.author}}"
                    placeholder="Author(s)"
                    name="authors">
           </mat-form-field>
