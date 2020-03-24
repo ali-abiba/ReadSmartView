@@ -2,7 +2,7 @@
   "name": "read-smart-view",
   "version": "0.0.0",
   "engines": {
-    "node": "6.11.0",
+    "node": "10.9.0",
     "npm": "3.10.10"
   },
   "scripts": {

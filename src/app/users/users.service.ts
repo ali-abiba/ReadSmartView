@@ -25,7 +25,7 @@ export class UsersService {
       })
     };
 
-    this.http.post(`${environment.mailHandleUrl}/mail/add-email`,{email: this.email}, httpOptions).subscribe(res => {
+    this.http.post(`${environment.mailHandleUrl}/mail/add-email`,{email: email}, httpOptions).subscribe(res => {
       console.log(res);
     });
   }
