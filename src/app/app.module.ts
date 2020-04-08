@@ -37,11 +37,11 @@ const appRoutes: Routes = [
   {path: 'landing', component: LandingComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuardService]},
    {path: 'login', component: UserLoginComponent},
-  // {path: 'create-user', component: UsersNewUserComponent},
-  // {path: 'add-book', component: BookAddComponent, canActivate: [AuthGuardService]},
-  // {path: 'book-list', component: BookListComponent, canActivate: [AuthGuardService]},
-  // {path: 'book-info/:isbn', component: BookInfoComponent, canActivate: [AuthGuardService]},
-  // {path: 'read/:bookId', component: BookReadComponent, canActivate: [AuthGuardService]},
+  {path: 'create-user', component: UsersNewUserComponent},
+  {path: 'add-book', component: BookAddComponent, canActivate: [AuthGuardService]},
+  {path: 'book-list', component: BookListComponent, canActivate: [AuthGuardService]},
+  {path: 'book-info/:isbn', component: BookInfoComponent, canActivate: [AuthGuardService]},
+  {path: 'read/:bookId', component: BookReadComponent, canActivate: [AuthGuardService]},
   {path: '', redirectTo: '/landing', pathMatch: 'full'}
 ]
 
