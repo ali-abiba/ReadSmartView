@@ -1,0 +1,12 @@
+<app-header-component></app-header-component>
+
+<mat-progress-spinner *ngIf="!book"></mat-progress-spinner>
+
+<div *ngIf="book">
+  <div class="head" [style.background-image]="'url('+book.cover+')'">
+  </div>
+
+  <div class="mx-auto start-read">
+    <button mat-raised-button class="start-btn" routerLinkActive="true" routerLink="/read/{{book.id}}" color="accent">Start reading {{book.title}}</button>
+  </div>
+</div>
